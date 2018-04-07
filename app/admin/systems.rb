@@ -4,6 +4,7 @@ ActiveAdmin.register System do
 #
 # permit_params :list, :of, :attributes, :on, :model
 #
+	actions :index, :show	
 # or
 #
 # permit_params do

@@ -21,7 +21,7 @@
     <td><%= @leave.try(:to_date) %></td>
     <td><%= @leave.try(:reason) %></td>
     <td><%= @leave.try(:created_at) %></td>
-    <td><%= leave_status(@leave.status) %></td>
+    <td><%= raw leave_status(@leave.status) %></td>
     <td><%= approved_by_whom(@leave.approved_by) %></td>
     <td>
       <%if @leave.status == 0 %>

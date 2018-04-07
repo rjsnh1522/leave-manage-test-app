@@ -36,7 +36,7 @@ ActiveAdmin.register Leave do
 					end
 				end
 			end
-			render :index
+			redirect_to admin_leaves_path
 		end
 
 
