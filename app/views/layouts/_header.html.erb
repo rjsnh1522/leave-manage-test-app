@@ -1,0 +1,22 @@
+<nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/leaves">Leave manage</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active">
+        <% unless current_user.present? %>
+        <%= link_to "login",new_user_session_path %>
+        <% else %>
+        <%= link_to "logout", destroy_user_session_path, :method => :delete%>
+        <% end %>
+      </li>
+
+      <li>
+        <% if current_user.present? %>
+       <%= link_to "Leaves",leaves_path %>
+       <% end %>
+      </li>
+    </ul>
+  </div>
+</nav>

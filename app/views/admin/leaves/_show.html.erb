@@ -1,0 +1,39 @@
+<% if @leave.present? %>
+<h2>HTML Table</h2>
+
+<table>
+  <tr>
+    <th>id</th>
+    <th>User_id</th>
+    <th>From_date</th>
+    <th>To_date</th>
+    <th>Reason</th>
+    <th>Applied on</th>
+    <th>status</th>
+    <th>Approved /Reject by</th>
+    <th>Action</th>
+  </tr>
+ 
+  <tr>
+    <td><%= @leave.id %></td>
+    <td><%= @leave.user_id %></td>
+    <td><%= @leave.try(:from_date) %></td>
+    <td><%= @leave.try(:to_date) %></td>
+    <td><%= @leave.try(:reason) %></td>
+    <td><%= @leave.try(:created_at) %></td>
+    <td><%= leave_status(@leave.status) %></td>
+    <td><%= approved_by_whom(@leave.approved_by) %></td>
+    <td>
+      <%if @leave.status == 0 %>
+        <%=link_to "accept", accept_leave_path(@leave.id,status:"accept")%>
+        <%=link_to "reject", reject_leave_path(@leave.id,status:"reject")%>
+      <% elsif @leave.status == 1 %>
+        <%=link_to "reject", reject_leave_path(@leave.id,status:"reject") %>
+      <% else %>
+        <%=link_to "accept", accept_leave_path(@leave.id,status:"accept")%>
+      <% end %>
+    </td>
+  </tr>
+  
+</table>
+<% end %>

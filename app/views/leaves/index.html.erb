@@ -1,0 +1,48 @@
+<div class="container">
+	<div class="col-md-4">
+			Total Leave Applied: <%= @user.add_leave_count if @user.present? %> days
+			Total Leaves Allowed: <%= System.last.max_leave.present? ? System.last.max_leave : 12 %> days
+			Leave Left: <%= leave_taken %>
+			<%if leave_taken < 0 %>
+				For the extra leaves taken . Your salary will be deducted
+			<% end %>
+		
+				<%= link_to 'Apply leave',new_leave_path,class:"btn btn-info" %>
+			
+		</div>
+			<% if @all_leaves.present? %>
+			<table class="table table-striped">
+		    <thead>
+		      <tr>
+		        <th>S.No</th>
+		        <th>Leave Id</th>
+		        <th>From Date</th>
+		        <th>To Date</th>
+		        <th>Applied On</th>
+		        <th>Status</th>
+		        <th>Approved/rejected by</th>
+		      </tr>
+		    </thead>
+		    <tbody>
+		    	<% @all_leaves.each_with_index do |leave,index| %>
+		      <tr>
+		        <td><%= index+1 %></td>
+		        <td><%= leave.id %></td>
+		        <td><%= leave.try(:from_date).to_date %></td>
+		        <td><%= leave.try(:to_date).to_date %></td>
+		        <td><%= leave.try(:created_at).to_date %></td>
+		        <td><%= leave_status(leave.status) %></td>
+		        <td><%= approved_by_whom(leave.approved_by) %></td>
+		      </tr>
+		      <% end %>
+		    </tbody>
+		  </table>
+		  <% else %>
+		  	<div class="col-md-4 center-block">
+		  			No leaves applied
+		  	</div>
+		  <% end %>
+
+
+
+</div>
