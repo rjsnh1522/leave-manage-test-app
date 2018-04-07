@@ -13,3 +13,17 @@
  
  *= require_self
  */
+
+
+
+.marginTop{
+	margin-top: 200px;
+}
+.marginTop p{
+	font-weight: 600;
+}
+.singleLinePara{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}

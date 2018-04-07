@@ -1,14 +1,15 @@
 <div class="container">
+		<div class="singleLinePara">
+			<p class=""> Total Leave Applied: <span class="label label-success"><%= @user.add_leave_count if @user.present? %></span> days</p>
+			<p>Total Leaves Allowed: <span class="label label-info"><%= System.last.try(:max_leave).present? ? System.last.max_leave : 12 %> </span> days</p>
+			<p>Leave Left: <span class="label label-warning"><%= leave_taken %></span> days</p>
+			</div>
 	<div class="col-md-4">
-			Total Leave Applied: <%= @user.add_leave_count if @user.present? %> days
-			Total Leaves Allowed: <%= System.last.max_leave.present? ? System.last.max_leave : 12 %> days
-			Leave Left: <%= leave_taken %>
+	
 			<%if leave_taken < 0 %>
-				For the extra leaves taken . Your salary will be deducted
+				<p class="label-danger label">For the extra leaves taken . Your salary will be deducted </p>
 			<% end %>
-		
 				<%= link_to 'Apply leave',new_leave_path,class:"btn btn-info" %>
-			
 		</div>
 			<% if @all_leaves.present? %>
 			<table class="table table-striped">
@@ -31,15 +32,15 @@
 		        <td><%= leave.try(:from_date).to_date %></td>
 		        <td><%= leave.try(:to_date).to_date %></td>
 		        <td><%= leave.try(:created_at).to_date %></td>
-		        <td><%= leave_status(leave.status) %></td>
+		        <td><%= raw leave_status(leave.status) %></td>
 		        <td><%= approved_by_whom(leave.approved_by) %></td>
 		      </tr>
 		      <% end %>
 		    </tbody>
 		  </table>
 		  <% else %>
-		  	<div class="col-md-4 center-block">
-		  			No leaves applied
+		  	<div class="col-md-4 center-block marginTop">
+		  			<p>No leaves applied</p>
 		  	</div>
 		  <% end %>
 
