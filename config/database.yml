@@ -51,7 +51,6 @@ production:
   adapter: mysql2
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  database: leave_manage_production
-  username: ENV['CLEARDB_DATABASE_USERNAME']
-  password: ENV['CLEARDB_DATABASE_PASSWORD']
- 
+  database: <%= ENV['CLEARDB_DATABASE_URL'] %>
+  username: <%= ENV['CLEARDB_DATABASE_USERNAME'] %>
+  password: <%= ENV['CLEARDB_DATABASE_PASSWORD'] %>
