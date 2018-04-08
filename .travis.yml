@@ -1,0 +1,4 @@
+services:
+  - mysql
+before_install:
+  - mysql -e 'CREATE DATABASE IF NOT EXISTS leave_manage_test;'
